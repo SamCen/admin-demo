@@ -30,7 +30,7 @@ class AuthController extends Controller
          * @var $admin Admin
          */
         $admin = Auth::user();
-        $admin->last_login_ip = $request->ip();
+        $admin->last_login_ip = $_SERVER['HTTP_X_FORWARDED_FOR']?:'127.0.0.1';
         $admin->save();
         $response = [
             'access_token' => $token,
