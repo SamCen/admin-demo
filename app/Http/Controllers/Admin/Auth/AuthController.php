@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Auth\LoginRequest;
 use App\Models\Admin;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -25,6 +26,12 @@ class AuthController extends Controller
         if (! $token = auth('admin')->attempt($credentials)) {
             return error('账号或密码不正确',401);
         }
+        /**
+         * @var $admin Admin
+         */
+        $admin = Auth::user();
+        $admin->last_login_ip = $request->ip();
+        $admin->save();
         $response = [
             'access_token' => $token,
             'token_type' => 'bearer',
