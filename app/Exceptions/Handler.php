@@ -50,12 +50,11 @@ class Handler extends ExceptionHandler
 
     /**
      * Author sam
-     * DateTime 2019-09-26 18:49
+     * DateTime 2019-10-15 11:46
      * Description:拦截异常
      * @param \Illuminate\Http\Request $request
      * @param Exception $exception
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Response|\Symfony\Component\HttpFoundation\Response
-     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function render($request, Exception $exception)
     {
