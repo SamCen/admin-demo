@@ -18,7 +18,7 @@ class CreateAdminsTable extends Migration
             $table->string('name')->comment('名称');
             $table->string('account')->unique()->comment('账号');
             $table->string('password')->comment('密码');
-            $table->integer('last_login_ip')->nullable()->comment('上次登录ip');
+            $table->unsignedInteger('last_login_ip')->nullable()->comment('上次登录ip');
             $table->boolean('status')->default(1)->comment('状态 1启用 0禁用');
             $table->timestamps();
         });
