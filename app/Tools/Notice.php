@@ -24,11 +24,8 @@ class Notice
      */
     public function __construct(array $config)
     {
-        if(empty($config['wx_uri'])){
-            throw new GeneralException('config error');
-        }
-        if(empty($config['wx_url'])){
-            throw new GeneralException('config error');
+        if(empty($config['wx_url']) || empty($config['wx_uri'])){
+            throw new GeneralException('notice config error');
         }
         $this->wx_uri = $config['wx_uri'];
         $this->wx_url = $config['wx_url'];
