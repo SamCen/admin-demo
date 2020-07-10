@@ -102,7 +102,7 @@ class RoleController extends Controller
         Role::destroy($id);
         return success();
     }
-
+    
     public function updatePri(Request $request,Role $role)
     {
         $renew = $request->get('renew');

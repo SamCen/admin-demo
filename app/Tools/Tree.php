@@ -26,7 +26,7 @@ class Tree
      */
     public static function getTree($data,$pid = 'base',$priKey = 'code',$parentKey = 'parent_code',$childKey = 'children')
     {
-        $tree = array();
+        $tree = [];
         foreach ($data as $k => $v){
             if($v[$parentKey] == $pid){
                 $v[$childKey] = self::getTree($data,$v[$priKey],$priKey,$parentKey,$childKey)?:null;
@@ -34,17 +34,5 @@ class Tree
             }
         }
         return $tree;
-    }
-
-    public static function format($data)
-    {
-        if ($data instanceof Collection) {
-            return $data;
-        }
-
-        if (is_array($data)) {
-            return collect($data);
-        }
-        throw new GeneralException('数据类型错误');
     }
 }
