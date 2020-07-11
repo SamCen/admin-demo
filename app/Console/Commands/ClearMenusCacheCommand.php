@@ -13,7 +13,7 @@ class ClearMenusCacheCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'menu:clear';
+    protected $signature = 'privileges:clear {userId}?';
 
     /**
      * The console command description.
@@ -39,13 +39,22 @@ class ClearMenusCacheCommand extends Command
      */
     public function handle()
     {
-        $keys = [
-            RedisKey::ADMIN_PRIVILEGES,
-            RedisKey::ADMIN_MENUS,
-        ];
-        foreach ($keys as $key){
-            Redis::del($key);
+
+        $userId = $this->argument('user');
+        if(empty($userId)){
+            $keys = [
+                RedisKey::ADMIN_PRIVILEGES,
+                RedisKey::ADMIN_MENUS,
+            ];
+            foreach ($keys as $key){
+                Redis::del($key);
+            }
+            $this->info('done');
+        }else{
+            Redis::hDel(RedisKey::ADMIN_PRIVILEGES,$userId);
+            Redis::hDel(RedisKey::ADMIN_MENUS,$userId);
+            $this->info('done');
         }
-        $this->info('done');
+
     }
 }

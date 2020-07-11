@@ -10,7 +10,13 @@ namespace App\Contract;
 
 class RedisKey
 {
-    const ADMIN_PRIVILEGES = 'admin_privileges';
+    /**
+     * 后台用户权限
+     */
+    const ADMIN_PRIVILEGES = 'admin:privileges';
 
-    const ADMIN_MENUS = 'admin_menus';
+    /**
+     * 后台用户菜单
+     */
+    const ADMIN_MENUS = 'admin:menus';
 }
