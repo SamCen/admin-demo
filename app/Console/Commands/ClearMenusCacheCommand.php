@@ -13,7 +13,7 @@ class ClearMenusCacheCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'privileges:clear {userId}?';
+    protected $signature = 'privileges:clear {userId?}';
 
     /**
      * The console command description.
@@ -40,7 +40,7 @@ class ClearMenusCacheCommand extends Command
     public function handle()
     {
 
-        $userId = $this->argument('user');
+        $userId = $this->hasArgument('user')?$this->argument('user'):null;
         if(empty($userId)){
             $keys = [
                 RedisKey::ADMIN_PRIVILEGES,
